@@ -11,7 +11,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-const { PORT, CONNECTION_STRING } = process.env;
+const { NODE_PORT, CONNECTION_STRING } = process.env;
 
 
 // Get Massive going here
@@ -30,6 +30,9 @@ massive(CONNECTION_STRING).then(db => {
 // this is getting all
 app.get(`/api/inventory`, con.getInventory);
 
+// this gets just one item
+app.get(`/api/inventory/:id`, con.getOneItem);
+
 // this is posting
 app.post(`/api/inventory`, con.addToInventory);
 
@@ -43,7 +46,7 @@ app.delete(`/api/inventory/:id`, con.removeItem);
 
 // Run the server Here
 
-app.listen(PORT, () => {
-    console.log(`we are listening on port ${PORT}`);
+app.listen(NODE_PORT, () => {
+    console.log(`we are listening on NODE_PORT ${NODE_PORT}`);
 
 })

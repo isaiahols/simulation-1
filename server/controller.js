@@ -13,22 +13,49 @@ module.exports = {
         })
     },
 
+    getOneItem: (req, res) => {
+        let { id } = req.params
+        console.log('they are asking for just one with id: ' + id);
+
+        req.app.get('db')
+            .getAnItem(id)
+            .then(response => {
+                res.status(200).send(response)
+            })
+            .catch(err => {
+                console.log('they say we have an error: ' + err);
+                res.sendStatus(500)
+            })
+    },
+
     addToInventory: (req, res) => {
         console.log('they just asked us to add to the db')
         let { imgurl, productname, price } = req.body;
-        req.app.get('db').addInventory(imgurl, productname, price).then(response => {
-            console.log(response);
-            res.status(200).send(response)
-        }).catch(err => {
-            console.log('they say we have an error: ' + err);
-            res.sendStatus(500)
-        })
+        req.app.get('db')
+            .addInventory(imgurl, productname, price)
+            .then(response => {
+                res.status(200).send(response)
+            })
+            .catch(err => {
+                console.log('they say we have an error: ' + err);
+                res.sendStatus(500)
+            })
     },
 
     editItem: (req, res) => {
         let { id } = req.params;
         let { imgurl, productname, price } = req.body;
         console.log(`lets edit an item with id of ${id}`);
+        req.app.get('db')
+            .editItem(imgurl, productname, price, id)
+            .then(response => {
+                console.log(response);
+                res.status(200).send(response);
+            })
+            .catch(err => {
+                console.log('they say we have an error: ' + err);
+                res.sendStatus(500)
+            })
 
     },
 
@@ -36,7 +63,8 @@ module.exports = {
         console.log(`we are supposed to get rid of an item now with id: ${req.params.id}`);
         let { id } = req.params;
 
-        req.app.get('db').removeOneItem(id)
+        req.app.get('db')
+            .removeOneItem(id)
             .then((response) => {
                 console.log(response);
                 res.status(200).send(response);

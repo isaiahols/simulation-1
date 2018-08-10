@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { HashRouter } from 'react-router-dom';
 
+import routes from './routes';
+
+import './reset.css';
 import './App.css';
 
 // importing Components
@@ -15,10 +19,20 @@ class App extends Component {
 
     this.state = {
       inventory: [],
+      item: {
+        imgUrl: '',
+        productName: '',
+        price: 0,
+        id: false,
+      },
     }
 
     this.getAllInventory = this.getAllInventory.bind(this);
+    this.updateInventory = this.updateInventory.bind(this);
+    this.updateItem = this.updateItem.bind(this);
   }
+
+
 
   componentDidMount() {
     axios
@@ -42,22 +56,44 @@ class App extends Component {
       })
   }
 
+  updateInventory(newInventory) {
+    this.setState({
+      inventory: newInventory,
+    })
+  }
+
+  updateItem(newItem) {
+    this.setState({
+      item: newItem
+    })
+  }
+
 
 
   render() {
     return (
-      <div className="App">
-        <p>see words here
+      <HashRouter>
+
+        <div className="App">
+          <Header />
+          <p>see words here
         </p>
-        <Dashboard
-          inventory={this.state.inventory}
-          getAllInventory={this.getAllInventory}
-        />
-        <Form
-          getAllInventory={this.getAllInventory}
-        />
-        <Header />
-      </div>
+          <Dashboard
+            inventory={this.state.inventory}
+            getAllInventory={this.getAllInventory}
+            updateInventory={this.updateInventory}
+            updateItem={this.updateItem}
+          />
+          <Form
+            getAllInventory={this.getAllInventory}
+            item={this.state.item}
+            updateItem={this.updateItem}
+            updateInventory={this.updateInventory}
+          />
+          {/* {routes} */}
+        </div>
+
+      </HashRouter>
     );
   }
 }

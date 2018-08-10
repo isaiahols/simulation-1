@@ -3,16 +3,37 @@ body {
 
 }
 
+/* style Guide */
+
+/* colors */
+/* #AB2A19 */
+/* #D34735 */
+/* #ED6B5A */
+/* #3AD886 */
+
+
+
 .App {
   text-align: center;
   background: lightslategrey;
+  position: relative;
+  min-height:100vh;
+}
+
+.header {
+  background: #AB2A19;
+  width: 100vw;
+  height: 10vh;
+  position: sticky;
+  top: 0;
+
 }
 
 .form {
   background: darkslategray;
   height: 80vh;
   width: 40vw;
-  float: right;
+  /* float: right; */
 }
 
 .product {
@@ -22,7 +43,7 @@ body {
 }
 
 .dashboard {
-  float: left;
+  /* float: left; */
   width: 50vw;
 
 }
