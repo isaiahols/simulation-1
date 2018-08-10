@@ -1,28 +1,28 @@
+body {
+  background: rgb(58, 57, 57);
+
+}
+
 .App {
   text-align: center;
+  background: lightslategrey;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.form {
+  background: darkslategray;
+  height: 80vh;
+  width: 40vw;
+  float: right;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.product {
+  background: lightblue;
+  max-width: 400px;
+  max-height: 400px;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
+.dashboard {
+  float: left;
+  width: 50vw;
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
